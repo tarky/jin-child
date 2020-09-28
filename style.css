@@ -1,0 +1,88 @@
+/*
+Template: jin
+Theme Name: jin-child
+Author: CrossPiece
+Version: 1.00
+*/
+
+.cps-post-main .red {
+    color: #D02223;
+}
+
+.cps-post-main .large {
+    font-size: 1.3rem;
+}
+
+.cps-post-main div.concept-box3.point:before {
+    content: "良い点"!important;
+}
+
+.cps-post-main div.concept-box4.point:before {
+	content: "悪い点"!important;
+}
+
+.cps-post-main div.concept-box3.recommend:before {
+	content: "こんな人にオススメ"!important;
+}
+
+.cps-post-main div.concept-box4.recommend:before {
+	content: "こんな人はヤメておこう"!important;
+}
+
+.cps-post-main .shadow {
+    -webkit-box-shadow: 0px 5px 15px -5px rgba(0, 0, 0, 0.8);
+    -moz-box-shadow: 0px 5px 15px -5px rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 5px 15px -5px rgba(0, 0, 0, 0.8);
+    -o-box-shadow: 0px 5px 15px -5px rgba(0, 0, 0, 0.8);
+    -ms-box-shadow: 0px 5px 15px -5px rgba(0, 0, 0, 0.8)
+}
+
+.cps-post-main>img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cps-post-main .video {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  margin-bottom: 2em;
+}
+
+.cps-post-main .video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.cps-post-main table{
+width: inherit;
+margin-left: auto;
+margin-right: auto;
+}
+
+.cps-post-main table th {
+background: #666;
+color: #FFF;
+font-weight: inherit;
+}
+
+.cps-post-main table tfoot {
+border-top: solid 3px rgba(0,0,0,0.8);
+background: #FFF;
+font-weight: bold;
+}
+
+.my-profile .my-profile-thumb a{
+	display: inline-block;
+    pointer-events: none;
+}
+
+/*
+.twitter-wrapper iframe { width: 740px !important; }
+*/

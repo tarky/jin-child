@@ -1,0 +1,56 @@
+.mce-content-body .red {
+    color: #D02223;
+}
+
+.mce-content-body .large {
+    font-size: 1.3rem;
+}
+
+.mce-content-body div.concept-box3.point:before {
+    content: "良い点"!important;
+}
+
+.mce-content-body div.concept-box4.point:before {
+	content: "悪い点"!important;
+}
+
+.mce-content-body div.concept-box3.recommend:before {
+	content: "こんな人にオススメ"!important;
+}
+
+.mce-content-body div.concept-box4.recommend:before {
+	content: "こんな人はヤメておこう"!important;
+}
+
+.mce-content-body .shadow {
+    -webkit-box-shadow: 0px 5px 15px -5px rgba(0, 0, 0, 0.8);
+    -moz-box-shadow: 0px 5px 15px -5px rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 5px 15px -5px rgba(0, 0, 0, 0.8);
+    -o-box-shadow: 0px 5px 15px -5px rgba(0, 0, 0, 0.8);
+    -ms-box-shadow: 0px 5px 15px -5px rgba(0, 0, 0, 0.8)
+}
+
+.mce-content-body>img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mce-content-body table{
+width: inherit;
+margin-left: auto;
+margin-right: auto;
+}
+
+.mce-content-body table th {
+background: #666;
+color: #FFF;
+font-weight: inherit;
+}
+
+.mce-content-body table tfoot {
+border-top: solid 3px rgba(0,0,0,0.8);
+background: #FFF;
+font-weight: bold;
+}
+
