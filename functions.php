@@ -111,6 +111,14 @@ $html = preg_replace( '/(width|height)="\d*"\s/', "", $html );
 return $html;
 }
 
+// メディア追加時のwidth/height自動追加を削除
+function my_remove_width_attribute( $options ) {
+    if ( $options['tinymce'] ) {
+        wp_enqueue_script( 'remove_width_attribute', get_stylesheet_directory_uri() . '/js/remove_width_attribute.js', array( 'jquery' ), '1.0.0', true);
+    }
+}
+add_action( 'wp_enqueue_editor', 'my_remove_width_attribute', 10, 1 );
+
 function multiple_tags() {
 //複数タグのアーカイブでURLからスラッグを拾ってID・タグ名を取得。
 $tagVar = get_query_var('tag');
@@ -171,7 +179,7 @@ add_action('after_setup_theme','remove_parent_theme_wrap_iframe_in_div_hook');
 
 
 function tinymce_custom($settings) {
-	
+
     $invalid_style = array(
         'table' => 'width height',
         'th' => 'width height',
