@@ -83,6 +83,23 @@ font-weight: bold;
     pointer-events: none;
 }
 
+.cps-post-main .scroll {
+  overflow: auto;
+  white-space: nowrap;
+  margin-bottom: 1.5em; }
+
+.cps-post-main .scroll > table {
+    margin-bottom: 0; }
+
+.cps-post-main .scroll::-webkit-scrollbar {
+  height: 5px; }
+
+.cps-post-main .scroll::-webkit-scrollbar-track {
+  background: #F1F1F1; }
+
+.cps-post-main .scroll::-webkit-scrollbar-thumb {
+  background: #BCBCBC; }
+
 /*
 .twitter-wrapper iframe { width: 740px !important; }
 */
