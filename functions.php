@@ -192,4 +192,24 @@ function tinymce_custom($settings) {
     return $settings;
 }
 add_filter('tiny_mce_before_init', 'tinymce_custom', 0);
+
+//wp_headに追加
+function add_preload() {
+  echo '<link rel="preload" href="/wp-content/themes/jin/font/jin-icons/fonts/jin-icons.ttf?c16tcv" as="font" type="font/ttf" crossorigin>'."\n";
+}
+add_action('wp_head', 'add_preload');
+
+function set_width_height( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
+  $img_attr = wp_get_attachment_image_src($post_thumbnail_id, $size);
+  $html = str_replace('<img', '<img width="'.$img_attr[1].'" height="'.$img_attr[2].'"', $html);
+  return $html;
+};
+
+add_filter( 'post_thumbnail_html', 'set_width_height', 99, 5 );
+
+function dequeue_plugins_style() {
+    wp_dequeue_style('wp-block-library');
+}
+add_action( 'wp_enqueue_scripts', 'dequeue_plugins_style', 9999);
+
 ?>
