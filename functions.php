@@ -212,4 +212,38 @@ function dequeue_plugins_style() {
 }
 add_action( 'wp_enqueue_scripts', 'dequeue_plugins_style', 9999);
 
+function add_noscript_to_jin( $tag, $handle ) {
+  if ( !in_array( $handle , [ 'theme-style', 'fontawesome-style','swiper-style', ], true ) ) {
+      return $tag;
+  }
+  $tag = str_replace( '<link', '<noscript class="deferred-jin"><link', $tag );
+  return str_replace( '/>', '/></noscript>', $tag );
+}
+add_filter( 'style_loader_tag', 'add_noscript_to_jin', 10, 2 );
+
+
+function jin_script() {
+  echo <<< EOM
+<script>
+ var loadDeferredStylesJin = function() {
+   var addStylesNodes = document.getElementsByClassName("deferred-jin");
+   var replacement = document.createElement("div");
+
+   addStylesNodes = Array.prototype.slice.call(addStylesNodes);
+   addStylesNodes.forEach(function(elm) {
+     replacement.innerHTML += elm.textContent;
+     elm.parentElement.removeChild(elm);
+   });
+   document.body.appendChild(replacement);
+ };
+ var raf = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+     window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+ if (raf) raf(function() { window.setTimeout(loadDeferredStylesJin, 0); });
+ else window.addEventListener('load', loadDeferredStylesJin);
+</script>
+EOM;
+}
+
+add_action( 'wp_footer', 'jin_script' );
+
 ?>
