@@ -246,4 +246,12 @@ EOM;
 
 add_action( 'wp_footer', 'jin_script' );
 
+function output_inline_style() {
+	wp_register_style( 'inline-jin', false );
+	wp_enqueue_style( 'inline-jin' , 0);
+	$css = file_get_contents( get_stylesheet_directory_uri().'/inline.css', true );
+	wp_add_inline_style( 'inline-jin', $css );
+}
+add_action( 'wp_enqueue_scripts', 'output_inline_style' );
+
 ?>
