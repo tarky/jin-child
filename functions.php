@@ -252,7 +252,7 @@ function output_inline_style() {
 	$svg = base64_encode(file_get_contents( get_stylesheet_directory_uri().'/loading.svg'));
 
 	$css = "
-    img {
+    img, iframe {
       background-image: url('data:image/svg+xml;base64,".$svg."') !important;
       background-repeat: no-repeat !important;
       background-position: center !important;
