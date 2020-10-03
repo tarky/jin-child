@@ -263,4 +263,12 @@ function output_inline_style() {
 add_action( 'wp_enqueue_scripts', 'output_inline_style' );
 
 add_action( 'kattene', 'kattene_prepare_lazyloading');
+
+add_filter('the_content','prepare_lazyloading_to_balloon_icon');
+function prepare_lazyloading_to_balloon_icon($the_content){
+	return str_replace(
+		'<div class="balloon-icon "><img src',
+	  '<div class="balloon-icon "><img width="60" height="60" loading="lazy" src',
+		$the_content);
+}
 ?>
