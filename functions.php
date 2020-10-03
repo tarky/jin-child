@@ -262,4 +262,5 @@ function output_inline_style() {
 }
 add_action( 'wp_enqueue_scripts', 'output_inline_style' );
 
+add_action( 'kattene', 'kattene_prepare_lazyloading');
 ?>
