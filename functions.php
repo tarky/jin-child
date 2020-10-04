@@ -244,7 +244,7 @@ function jin_script() {
 EOM;
 }
 
-add_action( 'wp_footer', 'jin_script' );
+add_action( 'shutdown', 'jin_script' );
 
 function output_inline_style() {
 	wp_register_style( 'inline-jin', false );
@@ -271,4 +271,24 @@ function prepare_lazyloading_to_balloon_icon($the_content){
 	  '<div class="balloon-icon "><img width="60" height="60" loading="lazy" src',
 		$the_content);
 }
+
+function add_noscript($buffer) {
+	//error_log( print_r( $buffer, true ) );
+	$buffer = str_replace(
+		'<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">',
+		'<noscript class="deferred-jin"><link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet"></noscript>'
+		,$buffer);
+
+	$buffer = str_replace(
+		"<script type='text/javascript' src=",
+		"<script async type='text/javascript' src=",
+		$buffer
+	);
+
+	return $buffer;
+}
+
+add_action( 'wp_footer', function() { ob_start("add_noscript"); }, -99);
+add_action( 'shutdown',  function() { if( ob_get_level() > 0 ) ob_flush(); });
+
 ?>
