@@ -213,7 +213,13 @@ function dequeue_plugins_style() {
 add_action( 'wp_enqueue_scripts', 'dequeue_plugins_style', 9999);
 
 function add_noscript_to_jin( $tag, $handle ) {
-  if ( !in_array( $handle , [ 'theme-style', 'fontawesome-style','swiper-style', ], true ) ) {
+  $targets = [ 'theme-style', 'fontawesome-style','swiper-style' ];
+
+	if (is_mobile() && (is_single() || is_page())){
+		array_unshift($targets, 'parent-style');
+	}
+
+  if ( !in_array( $handle , $targets, true ) ) {
       return $tag;
   }
   $tag = str_replace( '<link', '<noscript class="deferred-jin"><link', $tag );
@@ -257,7 +263,16 @@ function output_inline_style() {
       background-repeat: no-repeat !important;
       background-position: center !important;
       background-size:20% auto !important;
-	  }";
+	  }
+		";
+	if (is_mobile() && (is_single() || is_page())){
+    $css .= file_get_contents( get_stylesheet_directory_uri().'/inline.css');
+		$css .= "
+		.my-profile{
+		  padding-bottom: 105px !important;
+		}";
+  }
+
 	wp_add_inline_style( 'inline-jin', $css );
 }
 add_action( 'wp_enqueue_scripts', 'output_inline_style' );
