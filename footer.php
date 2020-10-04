@@ -130,7 +130,7 @@
 <script src="<?php echo get_template_directory_uri() . '/js/prism.js' ?>"></script>
 <noscript class="deferred-jin"><link href="<?php echo get_template_directory_uri() . '/css/prism.css' ?>" rel="stylesheet" /></noscript>
 <?php endif; ?>
-<noscript class="deferred-jin"><link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet"></noscript>
+<noscript class="deferred-jin"><link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet"></noscript>
 <?php if( is_font_style() == 'nts-style' ): ?>
 <noscript class="deferred-jin"><link href="https://fonts.googleapis.com/earlyaccess/notosansjapanese.css" rel="stylesheet" /></noscript>
 <?php elseif( is_font_style() == 'rm-style' ): ?>
@@ -144,85 +144,8 @@
 
 <?php wp_footer(); ?>
 
-<script>
-	var mySwiper = new Swiper ('.swiper-container', {
-		// Optional parameters
-		loop: true,
-		slidesPerView: 5,
-		spaceBetween: 15,
-		autoplay: {
-			delay: 2700,
-		},
-		// If we need pagination
-		pagination: {
-			el: '.swiper-pagination',
-		},
+<!--swiperのjsコードを削除-->
 
-		// Navigation arrows
-		navigation: {
-			nextEl: '.swiper-button-next',
-			prevEl: '.swiper-button-prev',
-		},
-
-		// And if we need scrollbar
-		scrollbar: {
-			el: '.swiper-scrollbar',
-		},
-		breakpoints: {
-              1024: {
-				slidesPerView: 4,
-				spaceBetween: 15,
-			},
-              767: {
-				slidesPerView: 2,
-				spaceBetween: 10,
-				centeredSlides : true,
-				autoplay: {
-					delay: 4200,
-				},
-			}
-        }
-	});
-
-	var mySwiper2 = new Swiper ('.swiper-container2', {
-	// Optional parameters
-		loop: true,
-		slidesPerView: 3,
-		spaceBetween: 17,
-		centeredSlides : true,
-		autoplay: {
-			delay: 4000,
-		},
-
-		// If we need pagination
-		pagination: {
-			el: '.swiper-pagination',
-		},
-
-		// Navigation arrows
-		navigation: {
-			nextEl: '.swiper-button-next',
-			prevEl: '.swiper-button-prev',
-		},
-
-		// And if we need scrollbar
-		scrollbar: {
-			el: '.swiper-scrollbar',
-		},
-
-		breakpoints: {
-			767: {
-				slidesPerView: 2,
-				spaceBetween: 10,
-				centeredSlides : true,
-				autoplay: {
-					delay: 4200,
-				},
-			}
-		}
-	});
-
-</script>
 <?php if( is_totop_display() == "exist") :?>
 <div id="page-top">
 	<a class="totop"><i class="jic jin-ifont-arrowtop"></i></a>
