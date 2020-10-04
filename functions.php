@@ -294,6 +294,11 @@ function my_remove_enqueue_style() {
 }
 add_action( 'wp_enqueue_scripts', 'my_remove_enqueue_style', 11);
 
+function my_deregister_scripts(){
+  wp_deregister_script( 'wp-embed' );
+}
+add_action( 'wp_footer', 'my_deregister_scripts' );
+
 if(!(is_admin())) {
  function add_async_to_enqueue_script($url) {
   if(FALSE === strpos($url, '.js')) return $url;
