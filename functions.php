@@ -272,23 +272,4 @@ function prepare_lazyloading_to_balloon_icon($the_content){
 		$the_content);
 }
 
-function add_noscript($buffer) {
-	//error_log( print_r( $buffer, true ) );
-	$buffer = str_replace(
-		'<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">',
-		'<noscript class="deferred-jin"><link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet"></noscript>'
-		,$buffer);
-
-	$buffer = str_replace(
-		"<script type='text/javascript' src=",
-		"<script async type='text/javascript' src=",
-		$buffer
-	);
-
-	return $buffer;
-}
-
-add_action( 'wp_footer', function() { ob_start("add_noscript"); }, -99);
-add_action( 'shutdown',  function() { if( ob_get_level() > 0 ) ob_flush(); });
-
 ?>
