@@ -233,14 +233,15 @@ function jin_script() {
 <script>
  var loadDeferredStylesJin = function() {
    var addStylesNodes = document.getElementsByClassName("deferred-jin");
-   var replacement = document.createElement("div");
+　　var place = document.getElementById('inline-jin-inline-css');
 
    addStylesNodes = Array.prototype.slice.call(addStylesNodes);
    addStylesNodes.forEach(function(elm) {
-     replacement.innerHTML += elm.textContent;
-     elm.parentElement.removeChild(elm);
+		 var replacement = document.createElement("div");
+		 replacement.innerHTML = elm.textContent;
+		 place.insertAdjacentElement('beforebegin', replacement.firstChild );
+		 elm.parentElement.removeChild(elm);
    });
-   document.body.appendChild(replacement);
  };
  var raf = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
      window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
