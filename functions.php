@@ -288,19 +288,4 @@ function prepare_lazyloading_to_balloon_icon($the_content){
 		$the_content);
 }
 
-function my_remove_enqueue_style() {
-    wp_dequeue_style('swiper-style');
-    wp_dequeue_script('cps-swiper');
-}
-add_action( 'wp_enqueue_scripts', 'my_remove_enqueue_style', 11);
-
-if(!(is_admin())) {
- function add_async_to_enqueue_script($url) {
-  if(FALSE === strpos($url, '.js')) return $url;
-  if(strpos($url, 'jquery.min.js')) return $url;
-  return "$url' async charset='UTF-8";
- }
- add_filter('clean_url', 'add_async_to_enqueue_script', 11, 1);
-}
-
 ?>
