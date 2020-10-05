@@ -193,6 +193,7 @@ function tinymce_custom($settings) {
 }
 add_filter('tiny_mce_before_init', 'tinymce_custom', 0);
 
+
 //wp_headに追加
 function add_preload() {
   echo '<link rel="preload" href="/wp-content/themes/jin/font/jin-icons/fonts/jin-icons.ttf?c16tcv" as="font" type="font/ttf" crossorigin>'."\n";
@@ -227,9 +228,9 @@ function add_noscript_to_jin( $tag, $handle ) {
 }
 add_filter( 'style_loader_tag', 'add_noscript_to_jin', 10, 2 );
 
-
-function jin_script() {
-  echo <<< EOM
+if(!(is_admin())) {
+  function jin_script() {
+    echo <<< EOM
 <script>
  var loadDeferredStylesJin = function() {
    var addStylesNodes = document.getElementsByClassName("deferred-jin");
@@ -249,9 +250,10 @@ function jin_script() {
  else window.addEventListener('load', loadDeferredStylesJin);
 </script>
 EOM;
+  }
+  add_action( 'shutdown', 'jin_script' );
 }
 
-add_action( 'shutdown', 'jin_script' );
 
 function output_inline_style() {
 	wp_register_style( 'inline-jin', false );
