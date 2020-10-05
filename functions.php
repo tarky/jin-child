@@ -254,7 +254,6 @@ EOM;
   add_action( 'shutdown', 'jin_script' );
 }
 
-
 function output_inline_style() {
 	wp_register_style( 'inline-jin', false );
 	wp_enqueue_style( 'inline-jin' , 0);
@@ -310,4 +309,4 @@ if(!(is_admin())) {
  add_filter('clean_url', 'add_async_to_enqueue_script', 11, 1);
 }
 
-?>
+remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
