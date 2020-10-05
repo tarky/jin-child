@@ -234,13 +234,13 @@ if(!(is_admin())) {
 <script>
  var loadDeferredStylesJin = function() {
    var addStylesNodes = document.getElementsByClassName("deferred-jin");
-　　var place = document.getElementById('inline-jin-inline-css');
+   var place = document.head.firstElementChild;
 
    addStylesNodes = Array.prototype.slice.call(addStylesNodes);
    addStylesNodes.forEach(function(elm) {
-		 var replacement = document.createElement("div");
-		 replacement.innerHTML = elm.textContent;
-		 place.insertAdjacentElement('beforebegin', replacement.firstChild );
+		 var parent = document.createElement("div");
+		 parent.innerHTML = elm.textContent;
+		 place.insertAdjacentElement('beforebegin', parent.firstChild );
 		 elm.parentElement.removeChild(elm);
    });
  };
