@@ -292,8 +292,14 @@ function prepare_lazyloading_to_balloon_icon($the_content){
 function my_remove_enqueue_style() {
     wp_dequeue_style('swiper-style');
     wp_dequeue_script('cps-swiper');
+    wp_dequeue_style('crayon');
 }
 add_action( 'wp_enqueue_scripts', 'my_remove_enqueue_style', 11);
+
+function crayon_enqueue_styles() {
+  wp_enqueue_style('crayon');
+}
+add_action( 'wp_enqueue_scripts', 'crayon_enqueue_styles', 12 );
 
 function my_deregister_scripts(){
   wp_deregister_script( 'wp-embed' );
