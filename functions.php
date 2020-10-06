@@ -214,7 +214,7 @@ function dequeue_plugins_style() {
 add_action( 'wp_enqueue_scripts', 'dequeue_plugins_style', 9999);
 
 function add_noscript_to_jin( $tag, $handle ) {
-  $targets = [ 'theme-style', 'fontawesome-style','swiper-style' ];
+  $targets = [ 'theme-style', 'fontawesome-style','swiper-style', 'crayon' ];
 
 	if (is_mobile() && (is_single() || is_page())){
 		array_unshift($targets, 'parent-style');
