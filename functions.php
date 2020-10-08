@@ -230,19 +230,25 @@ add_filter( 'style_loader_tag', 'add_noscript_to_jin', 10, 2 );
 
 if(!(is_admin())) {
   function jin_script() {
+		if (is_mobile() && (is_single() || is_page())){
+			$target_id = "jin-inline-css";
+		}else{
+			$target_id = "parent-style-css";
+		}
     echo <<< EOM
 <script>
  var loadDeferredStylesJin = function() {
    var addStylesNodes = document.getElementsByClassName("deferred-jin");
-   var place = document.head.firstElementChild;
+   var target = document.getElementById("{$target_id}");
+   var place = target.nextElementSibling;
 
    addStylesNodes = Array.prototype.slice.call(addStylesNodes);
    addStylesNodes.forEach(function(elm) {
 		 var parent = document.createElement("div");
 		 parent.innerHTML = elm.textContent;
 		 place.insertAdjacentElement('beforebegin', parent.firstChild );
-		 elm.parentElement.removeChild(elm);
    });
+	 addStylesNodes.forEach(function(elm) {elm.parentElement.removeChild(elm);});
  };
  var raf = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
      window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
@@ -255,8 +261,8 @@ EOM;
 }
 
 function output_inline_style() {
-	wp_register_style( 'inline-jin', false );
-	wp_enqueue_style( 'inline-jin' , 0);
+	wp_register_style( 'jin', false );
+	wp_enqueue_style( 'jin' , 0);
 	$svg = base64_encode(file_get_contents( get_stylesheet_directory_uri().'/loading.svg'));
 
 	$css = "
@@ -275,9 +281,9 @@ function output_inline_style() {
 		}";
   }
 
-	wp_add_inline_style( 'inline-jin', $css );
+	wp_add_inline_style( 'jin', $css );
 }
-add_action( 'wp_enqueue_scripts', 'output_inline_style' );
+add_action( 'wp_enqueue_scripts', 'output_inline_style', -99);
 
 add_action( 'kattene', 'kattene_prepare_lazyloading');
 
