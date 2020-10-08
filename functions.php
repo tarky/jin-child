@@ -322,3 +322,4 @@ if(!(is_admin())) {
 }
 
 remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
+define( 'EWWW_IMAGE_OPTIMIZER_DISABLE_AUTOCONVERT', true );
