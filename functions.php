@@ -323,3 +323,12 @@ if(!(is_admin())) {
 
 remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
 define( 'EWWW_IMAGE_OPTIMIZER_DISABLE_AUTOCONVERT', true );
+
+function disable_correct_url() {
+	echo <<< EOM
+<script>
+	window.wpLink.correctURL= function () {};
+</script>
+EOM;
+}
+add_action('admin_print_footer_scripts', 'disable_correct_url');
