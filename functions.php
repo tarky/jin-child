@@ -213,22 +213,22 @@ function dequeue_plugins_style() {
 }
 add_action( 'wp_enqueue_scripts', 'dequeue_plugins_style', 9999);
 
-function add_noscript_to_jin( $tag, $handle ) {
-  $targets = [ 'theme-style', 'fontawesome-style','swiper-style', 'crayon' ];
-
-	if (is_mobile() && (is_single() || is_page())){
-		array_unshift($targets, 'parent-style');
-	}
-
-  if ( !in_array( $handle , $targets, true ) ) {
-      return $tag;
-  }
-  $tag = str_replace( '<link', '<noscript class="deferred-jin"><link', $tag );
-  return str_replace( '/>', '/></noscript>', $tag );
-}
-add_filter( 'style_loader_tag', 'add_noscript_to_jin', 10, 2 );
-
 if(!(is_admin())) {
+  function add_noscript_to_jin( $tag, $handle ) {
+    $targets = [ 'theme-style', 'fontawesome-style','swiper-style', 'crayon' ];
+
+  	if (is_mobile() && (is_single() || is_page())){
+  		array_unshift($targets, 'parent-style');
+  	}
+
+    if ( !in_array( $handle , $targets, true ) ) {
+        return $tag;
+    }
+    $tag = str_replace( '<link', '<noscript class="deferred-jin"><link', $tag );
+    return str_replace( '/>', '/></noscript>', $tag );
+  }
+  add_filter( 'style_loader_tag', 'add_noscript_to_jin', 10, 2 );
+
   function jin_script() {
 		if (is_mobile() && (is_single() || is_page())){
 			$target_id = "jin-inline-css";
