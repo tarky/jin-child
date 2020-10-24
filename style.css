@@ -100,6 +100,9 @@ font-weight: bold;
 .cps-post-main .scroll::-webkit-scrollbar-thumb {
   background: #BCBCBC; }
 
+.cps-post-main blockquote ul {
+  padding-bottom: 2rem; }
+
 /*
 .twitter-wrapper iframe { width: 740px !important; }
 */
