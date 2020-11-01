@@ -103,6 +103,12 @@ font-weight: bold;
 .cps-post-main blockquote ul {
   padding-bottom: 2rem; }
 
+.cps-post-main code {
+  border: 1px solid #dedede !important;
+  background-color: #f8f8ff !important;
+  margin: 0 2px;
+  padding: 0 2px;
+}
 /*
 .twitter-wrapper iframe { width: 740px !important; }
 */
