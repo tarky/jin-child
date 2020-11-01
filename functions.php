@@ -258,6 +258,24 @@ if(!(is_admin())) {
 EOM;
   }
   add_action( 'shutdown', 'jin_script' );
+
+	function remove_loading_img() {
+		echo <<< EOM
+<script>
+var imgs = document.querySelectorAll( 'img' );
+imgs.forEach(function(img) {
+  if(img.complete){
+		img.setAttribute('style', 'background-image: none !important');
+  }else{
+		img.onload = function() {
+      img.setAttribute('style', 'background-image: none !important');
+	  };
+	}
+});
+</script>
+EOM;
+	}
+	add_action( 'shutdown', 'remove_loading_img' );
 }
 
 function output_inline_style() {
