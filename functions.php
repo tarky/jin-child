@@ -263,7 +263,9 @@ EOM;
 function output_inline_style() {
 	wp_register_style( 'jin', false );
 	wp_enqueue_style( 'jin' , 0);
-	$svg = base64_encode(file_get_contents( get_stylesheet_directory_uri().'/loading.svg'));
+	$theme_color = get_theme_mod( 'theme_color', '#a9a9a9');
+	$svg = file_get_contents( get_stylesheet_directory_uri().'/loading.svg');
+	$svg = base64_encode(str_replace("#a9a9a9", $theme_color, $svg));
 
 	$css = "
     img, iframe {
