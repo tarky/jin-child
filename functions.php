@@ -290,7 +290,7 @@ function output_inline_style() {
       background-image: url('data:image/svg+xml;base64,".$svg."') !important;
       background-repeat: no-repeat !important;
       background-position: center !important;
-      background-size:20% auto !important;
+      background-size:30% auto !important;
 	  }
 		";
 	if (is_mobile() && (is_single() || is_page())){
