@@ -292,6 +292,10 @@ function output_inline_style() {
       background-position: center !important;
       background-size:30% auto !important;
 	  }
+		.adsbygoogle iframe{
+      background-size:20% auto !important;
+      background-position: 50% 20% !important;
+    }
 		";
 	if (is_mobile() && (is_single() || is_page())){
     $css .= file_get_contents( get_stylesheet_directory_uri().'/inline.css');
