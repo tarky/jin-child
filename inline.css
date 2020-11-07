@@ -509,6 +509,20 @@ footer {
 
 /* 投稿・固定ページなどのベースCSS */
 /* CSS Document */
+.cps-post-main {
+  position: relative;
+  z-index: 0;
+  padding-top: 20px;}
+
+.cps-post-main p {
+  padding-bottom: 2rem;
+  padding-top: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  letter-spacing: 0.05em;
+  line-height: 1.8em;
+  font-size: 1em; }
+
 @media (max-width: 767px) {
   .article_style1 .cps-post-box {
     padding: 15px 0; } }
