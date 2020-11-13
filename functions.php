@@ -339,8 +339,7 @@ add_action( 'wp_footer', 'my_deregister_scripts' );
 if(!(is_admin())) {
  function add_async_to_enqueue_script($url) {
   if(FALSE === strpos($url, '.js')) return $url;
-  if(strpos($url, 'jquery.min.js')) return $url;
-  return "$url' async charset='UTF-8";
+  return "$url' defer charset='UTF-8";
  }
  add_filter('clean_url', 'add_async_to_enqueue_script', 11, 1);
 }
