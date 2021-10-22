@@ -33,48 +33,6 @@ function custom_excerpt_length($length){
 }
 add_filter('excerpt_length','custom_excerpt_length',999);
 
-function to_blog_card($the_content) {
-	if ( is_singular() || is_category() || is_front_page() ) {
-
-
-  $res = preg_match_all("/\[card name=.*\]/" , $the_content, $m);
-		foreach ($m[0] as $match) {
-			$temp = '';
-      $temp = preg_replace("/^\[card name=/", "" , $match);
-			$temp = preg_replace("/\]$/", "" , $temp);
-			$temp = str_replace('"', '', $temp);
-			$url = '/'.$temp.'/';
-			$id = url_to_postid( $url );
-			if ( ! $id ) continue;//IDを取得できない場合はループを飛ばす
-				$post = get_post($id);
-				$title = $post->post_title;
-				if( ! get_post_meta($post->ID, 'post_desc',true) == null ){
-					$excerpt = get_post_meta($post->ID, 'post_desc',true);
-				}else{
-					$excerpt = cps_excerpt($post->post_content,68);
-				}
-				$logo = esc_url( get_site_icon_url( 32 ) ) ;
-				$sitetitle = get_bloginfo('name');
-				$thumbnail = get_the_post_thumbnail($id, 'cps_thumbnails', array('class' => 'blog-card-thumb-image'));
-				if ( !$thumbnail ) {
-					$thumbnail = '<img src="'.get_template_directory_uri().'/img/noimg320.png" />';
-				}
-
-			$tag = '<a href="'.$url.'" class="blog-card"><div class="blog-card-hl-box"><i class="jic jin-ifont-post"></i><span class="blog-card-hl"></span></div><div class="blog-card-box"><div class="blog-card-thumbnail">'.$thumbnail.'</div><div class="blog-card-content"><span class="blog-card-title">'.$title.'</span><span class="blog-card-excerpt">'.$excerpt.'...</span></div></div></a>';
-
-      $the_content = str_replace('<p>'.$match.'</p>', $tag , $the_content);
-
-		}
-	}
-	return $the_content;
-}
-
-add_filter('the_content','to_blog_card');
-function remove_parent_theme_hook_func(){
-  remove_filter('the_content','url_to_blog_card');
-}
-add_action('after_setup_theme','remove_parent_theme_hook_func');
-
 function jin_auto_desc_func_custom() {
 	$post_id = get_the_ID();
 	$post = get_post( $post_id );
