@@ -42,22 +42,6 @@ function jin_auto_desc_func_custom() {
 	return esc_attr(  $auto_desc  );
 }
 
-add_filter( 'post_thumbnail_html', 'remove_width_attribute', 10 );
-add_filter( 'image_send_to_editor', 'remove_width_attribute', 10 );
-
-function remove_width_attribute( $html ) {
-$html = preg_replace( '/(width|height)="\d*"\s/', "", $html );
-return $html;
-}
-
-// メディア追加時のwidth/height自動追加を削除
-function my_remove_width_attribute( $options ) {
-    if ( $options['tinymce'] ) {
-        wp_enqueue_script( 'remove_width_attribute', get_stylesheet_directory_uri() . '/js/remove_width_attribute.js', array( 'jquery' ), '1.0.0', true);
-    }
-}
-add_action( 'wp_enqueue_editor', 'my_remove_width_attribute', 10, 1 );
-
 function multiple_tags() {
 //複数タグのアーカイブでURLからスラッグを拾ってID・タグ名を取得。
 $tagVar = get_query_var('tag');
@@ -116,36 +100,11 @@ remove_filter('the_content','wrap_iframe_in_div');
 }
 add_action('after_setup_theme','remove_parent_theme_wrap_iframe_in_div_hook');
 
-
-function tinymce_custom($settings) {
-
-    $invalid_style = array(
-        'table' => 'width height',
-        'th' => 'width height',
-        'td' => 'width height'
-    );
-    $settings['invalid_styles'] = json_encode($invalid_style);
-    $settings['table_resize_bars'] = false;
-    $settings['object_resizing'] = "img";
-
-    return $settings;
-}
-add_filter('tiny_mce_before_init', 'tinymce_custom', 0);
-
-
 //wp_headに追加
 function add_preload() {
   echo '<link rel="preload" href="/wp-content/themes/jin/font/jin-icons/fonts/jin-icons.ttf?c16tcv" as="font" type="font/ttf" crossorigin>'."\n";
 }
 add_action('wp_head', 'add_preload');
-
-function set_width_height( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
-  $img_attr = wp_get_attachment_image_src($post_thumbnail_id, $size);
-  $html = str_replace('<img', '<img width="'.$img_attr[1].'" height="'.$img_attr[2].'"', $html);
-  return $html;
-};
-
-add_filter( 'post_thumbnail_html', 'set_width_height', 99, 5 );
 
 function dequeue_plugins_style() {
     wp_dequeue_style('wp-block-library');
@@ -250,14 +209,6 @@ add_action( 'wp_enqueue_scripts', 'output_inline_style', -99);
 
 add_action( 'kattene', 'kattene_prepare_lazyloading');
 
-add_filter('the_content','prepare_lazyloading_to_balloon_icon');
-function prepare_lazyloading_to_balloon_icon($the_content){
-	return str_replace(
-		'<div class="balloon-icon "><img src',
-	  '<div class="balloon-icon "><img width="60" height="60" loading="lazy" src',
-		$the_content);
-}
-
 function my_remove_enqueue_style() {
     wp_dequeue_style('swiper-style');
     wp_dequeue_script('cps-swiper');
@@ -285,12 +236,3 @@ if(!(is_admin())) {
 
 remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
 define( 'EWWW_IMAGE_OPTIMIZER_DISABLE_AUTOCONVERT', true );
-
-function disable_correct_url() {
-	echo <<< EOM
-<script>
-	window.wpLink.correctURL= function () {};
-</script>
-EOM;
-}
-add_action('admin_print_footer_scripts', 'disable_correct_url');
