@@ -42,25 +42,6 @@ function jin_auto_desc_func_custom() {
 	return esc_attr(  $auto_desc  );
 }
 
-// 画像の添付ファイルページのリダイレクト
-add_action( 'template_redirect', 'attachment404' );
-
-function attachment404() {
-  // attachmentページだった場合
-  if ( is_attachment() ) {
-    global $wp_query;
-    $wp_query->set_404();
-    status_header(404);
-  }
-}
-
-function my_add_noindex_attachment(){
-    if (is_attachment()) {
-        echo '<meta name="robots" content="noindex,follow" />';
-    }
-}
-add_action('wp_head', 'my_add_noindex_attachment');
-
 add_filter( 'post_thumbnail_html', 'remove_width_attribute', 10 );
 add_filter( 'image_send_to_editor', 'remove_width_attribute', 10 );
 
