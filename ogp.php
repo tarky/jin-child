@@ -18,33 +18,33 @@
 <?php endif; ?>
 <?php elseif ( is_front_page()) : ?>
 <?php if( ! get_post_meta($post->ID, 'jin_seotitle',true) == null ) :?>
-<meta property="og:title" content="<?php echo get_post_meta($post->ID, 'jin_seotitle',true); ?>"> 
+<meta property="og:title" content="<?php echo get_post_meta($post->ID, 'jin_seotitle',true); ?>">
 <?php else: ?>
 <meta property="og:title" content="<?php bloginfo('name'); ?>｜<?php bloginfo('description'); ?>">
 <?php endif; ?>
 <meta property="og:url" content="<?php bloginfo('url'); ?>">
 <?php if( isset( $description ) && ! $description == null ): ?>
-<meta property="og:description" content="<?php echo $description ?>"> 
+<meta property="og:description" content="<?php echo $description ?>">
 <?php elseif( ! $description_home == null ): ?>
 <meta property="og:description" content="<?php echo $description_home; ?>">
 <?php elseif( ! empty($use_excerpt) ) : ?>
-<meta property="og:description" content="<?php echo $use_excerpt; ?>" > 
+<meta property="og:description" content="<?php echo $use_excerpt; ?>" >
 <?php else: ?>
-<meta property="og:description" content="<?php echo jin_auto_desc_func(); ?>"> 
+<meta property="og:description" content="<?php echo jin_auto_desc_func(); ?>">
 <?php endif; ?>
 <?php elseif ( is_singular() ): ?>
 <?php if( ! get_post_meta($post->ID, 'jin_seotitle',true) == null ) :?>
-<meta property="og:title" content="<?php echo get_post_meta($post->ID, 'jin_seotitle',true); ?>｜<?php bloginfo('name'); ?>"> 
+<meta property="og:title" content="<?php echo get_post_meta($post->ID, 'jin_seotitle',true); ?>｜<?php bloginfo('name'); ?>">
 <?php else: ?>
-<meta property="og:title" content="<?php the_title(); ?>｜<?php bloginfo('name'); ?>"> 
+<meta property="og:title" content="<?php the_title(); ?>｜<?php bloginfo('name'); ?>">
 <?php endif; ?>
-<meta property="og:url" content="<?php the_permalink(); ?>"> 
+<meta property="og:url" content="<?php the_permalink(); ?>">
 <?php if( ! $description == null ): ?>
-<meta property="og:description" content="<?php echo $description ?>"> 
+<meta property="og:description" content="<?php echo $description ?>">
 <?php elseif( ! empty($use_excerpt) ) : ?>
-<meta property="og:description" content="<?php echo $use_excerpt; ?>" > 
+<meta property="og:description" content="<?php echo $use_excerpt; ?>" >
 <?php else: ?>
-<meta property="og:description" content="<?php echo jin_auto_desc_func_custom(); ?>"> 
+<meta property="og:description" content="<?php echo jin_auto_desc_func_custom(); ?>">
 <?php endif; ?>
 <?php elseif(is_404()) :?>
 <meta property="og:title" content="<?php bloginfo('name'); ?>">
@@ -53,7 +53,7 @@
 <?php elseif(is_tag()) :?>
 <?php $postTag = get_the_tags(); $url = get_tag_link( $postTag[0]->term_id );?>
 <?php $http = is_ssl() ? 'https' : 'http';$url = $http.'://'.$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"]; ?>
-<meta property="og:title" content="<?php echo multiple_tags(); ?>の記事一覧｜<?php bloginfo('name'); ?>">
+<meta property="og:title" content="<?php esc_html(single_cat_title()); ?>タグの記事一覧｜<?php bloginfo('name'); ?>">
 <meta property="og:url" content="<?php echo $url; ?>">
 <?php elseif(is_category()) :?>
 <?php else :?>
@@ -108,7 +108,7 @@ $searchPattern = '/<img.*?src=(["\'])(.+?)\1.*?>/i';//投稿にイメージが�
 <?php endif;?>
 <?php elseif ( is_singular() ): ?>
 <?php if (has_post_thumbnail()) :?>
-<?php 
+<?php
 	$image_id = get_post_thumbnail_id();
 	$image = wp_get_attachment_image_src( $image_id, 'full');
 ?>

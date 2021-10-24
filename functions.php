@@ -42,44 +42,6 @@ function jin_auto_desc_func_custom() {
 	return esc_attr(  $auto_desc  );
 }
 
-function multiple_tags() {
-//複数タグのアーカイブでURLからスラッグを拾ってID・タグ名を取得。
-$tagVar = get_query_var('tag');
-if ( !empty($tagVar) ) {
-    if ( strpos($tagVar, '+') || strpos($tagVar, ' ') )
-        $separator = " + ";
-    else if ( strpos($tagVar, ',') )
-        $separator = " , ";
-    $tagSlugs = $currentTerms = array();
-    $tagSlugs = preg_split('(\+|,| )', $tagVar);
-    foreach ($tagSlugs as $tagSlug)
-        $currentTerms[] = get_term_by('slug', $tagSlug, 'post_tag');
-}
-//出力
-if ( !empty($currentTerms) ) {
-    $tagCount = count($currentTerms);
-    $i = 0;
-    foreach ($currentTerms as $currentTerm) {
-        $currentTagName .= $currentTerm->name;
-        $i++;
-        if($i != $tagCount){
-          $currentTagName .= $separator;
-        }
-    }
-}
-return $currentTagName;
-}
-
-// titleタグ変更　Cf. https://teratail.com/questions/168613
-function change_document_title( $title ) {
-  if ( is_tag() ) {
-    $title = multiple_tags().'の記事';
-  }
-  return $title;
-}
-
-add_filter( 'pre_get_document_title', 'change_document_title' , 100);
-
 function custom_youtube_oembed($code){
   if(strpos($code, 'youtu.be') !== false || strpos($code, 'youtube.com') !== false){
     $html = preg_replace("@src=(['\"])?([^'\">\s]*)@", "src=$1$2&showinfo=0&rel=0", $code);
