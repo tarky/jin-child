@@ -1,8 +1,10 @@
 <div class="clearfix"></div>
 	<!--フッター-->
+	<?php if( ! is_home() && ! is_front_page() ) :?>
 	<?php if( is_bread_display() == "exist") :?>
 	<?php if( ! is_mobile() ): ?>
 	<?php get_template_part('include/breadcrumb'); ?>
+	<?php endif; ?>
 	<?php endif; ?>
 	<?php endif; ?>
 	<footer role="contentinfo" itemscope itemtype="https://schema.org/WPFooter">

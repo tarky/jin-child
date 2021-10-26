@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<?php get_template_part( 'ogp' ); ?> 
+<?php get_template_part( 'ogp' ); ?>
 
 <?php if( is_home() ): ?>
 <?php if( ! get_theme_mod('desc_text') == "" ): ?>
@@ -18,7 +18,7 @@
 <?php elseif( ! empty($post->post_excerpt) ) : ?>
 <meta name="description" itemprop="description" content="<?php echo $post->post_excerpt; ?>" >
 <?php else: ?>
-<meta name="description" itemprop="description" content="<?php echo  jin_auto_desc_func(); ?>" >
+<meta name="description" itemprop="description" content="<?php echo jin_auto_desc_func(); ?>" >
 <?php endif; ?>
 <?php elseif( is_single() || is_page() ): ?>
 <?php if ( ! get_post_meta($post->ID, 'post_desc',true) == null ) :?>
@@ -73,9 +73,18 @@
 	?>
 	<?php endif; ?>
 <?php endif; ?>
+<?php if ( is_home() && is_paged() && get_option('seo_paged_all_noindex') == "all_noindex" ) : ?>
+<meta name="robots" content="noindex">
+<?php endif; ?>
+<?php if ( is_category() && is_paged() && get_option('seo_category_paged_all_noindex') == "all_noindex" ) : ?>
+<meta name="robots" content="noindex">
+<?php endif; ?>
+<?php if ( is_tag() && is_paged() && get_option('seo_tag_paged_all_noindex') == "all_noindex" ) : ?>
+<meta name="robots" content="noindex">
+<?php endif; ?>
 
 <?php wp_head(); ?>
-	
+
 <!--カエレバCSS-->
 <?php if( ! get_option('kaereba_design') == null ) : ?>
 <link href="<?php echo get_template_directory_uri() . '/css/kaereba.css' ?>" rel="stylesheet" />
@@ -101,8 +110,8 @@
 			<input type="checkbox" class="jin-sp-design" id="navtoggle">
 			<label for="navtoggle" class="sp-menu-open <?php is_sp_header_fix(); ?>"><span class="cps-icon-bar <?php is_animation_style(); ?>"></span><span class="cps-icon-bar <?php is_animation_style(); ?>"></span><span class="cps-icon-bar <?php is_animation_style(); ?>"></span></label>
 			<label for="navtoggle" class="sp-menu-close <?php is_sp_header_fix(); ?>"></label>
-	
-			
+
+
 			<div class="sp-menu-box">
 				<div class="sp-menu-title ef">MENU</div>
 				<?php wp_nav_menu( array(
@@ -137,11 +146,11 @@
 				<?php endif; ?>
 			</div>
 		<?php endif; ?>
-	
+
 	<?php endif; ?>
-	
+
 	<div id="scroll-content" class="<?php is_animation_style(); ?>">
-	
+
 		<!--ヘッダー-->
 
 		<?php if( is_header_design() == 'header_style1' ): ?>
@@ -173,7 +182,7 @@
 		<div class="clearfix"></div>
 
 		<?php if( ! is_page_template('lp.php') ) :?>
-	
+
 			<?php if( is_home() || is_front_page() ): ?>
 				<?php get_template_part('include/head/pickup-contents'); ?>
 			<?php else: ?>
