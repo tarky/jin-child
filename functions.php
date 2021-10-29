@@ -65,3 +65,10 @@ add_action('after_setup_theme','remove_parent_theme_wrap_iframe_in_div_hook');
 add_action( 'kattene', 'kattene_prepare_lazyloading');
 
 define( 'EWWW_IMAGE_OPTIMIZER_DISABLE_AUTOCONVERT', true );
+
+//make width, height and loading attr by img url.
+function make_whl_by_img_url($device = 'pc'){
+	$url = $device == 'sp' ? get_the_top_image_url_sp() : get_the_top_image_url();
+	$meta = wp_get_attachment_metadata( get_attachment_id($url));
+	return image_hwstring($meta['width'], $meta['height']) . 'loading="lazy"';
+}
