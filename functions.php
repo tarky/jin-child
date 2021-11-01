@@ -62,8 +62,6 @@ remove_filter('the_content','wrap_iframe_in_div');
 }
 add_action('after_setup_theme','remove_parent_theme_wrap_iframe_in_div_hook');
 
-add_action( 'kattene', 'kattene_prepare_lazyloading');
-
 define( 'EWWW_IMAGE_OPTIMIZER_DISABLE_AUTOCONVERT', true );
 
 //make width, height and loading attr by img url.
