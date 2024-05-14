@@ -78,6 +78,10 @@ background: #FFF;
 font-weight: bold;
 }
 
+.cps-post-main table.cps-table03 th {
+color: #5e6c77;
+}
+
 .my-profile .my-profile-thumb a{
 	display: inline-block;
     pointer-events: none;

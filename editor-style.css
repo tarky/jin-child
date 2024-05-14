@@ -54,5 +54,9 @@ background: #FFF;
 font-weight: bold;
 }
 
+.mce-content-body table.cps-table03 th {
+color: #5e6c77;
+}
+
 .mce-content-body blockquote ul {
   padding-bottom: 2rem; }
