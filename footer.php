@@ -8,11 +8,11 @@
 	<?php endif; ?>
 	<?php endif; ?>
 	<footer role="contentinfo" itemscope itemtype="https://schema.org/WPFooter">
-
+	
 		<!--ここからフッターウィジェット-->
-
+		
 		<?php if ( ! wp_isset_widets( 'footer-menu-left',true ) && ! wp_isset_widets( 'footer-menu-center',true ) && ! wp_isset_widets( 'footer-menu-right',true ) ) : ?>
-
+		
 		<?php else : ?>
 			<?php if( is_footer_design() == "footer_style1" ) :?>
 			<div id="footer-widget-area" class="footer_style1 <?php echo jin_footer_type(); ?>">
@@ -50,12 +50,12 @@
 			<?php endif; ?>
 			<div class="footersen"></div>
 		<?php endif; ?>
-
-
+		
+		
 		<div class="clearfix"></div>
-
+		
 		<!--ここまでフッターウィジェット-->
-
+	
 		<?php if ( footer_choice() == 'both' ) : ?>
 			<div id="footer-box">
 				<div class="footer-inner">
@@ -73,9 +73,9 @@
 		<?php endif; ?>
 		<div class="clearfix"></div>
 	</footer>
-
-
-
+	
+	
+	
 	<?php if ( is_mobile() ) : ?>
 	<!--ここからフッターメニュー-->
 		<?php if( has_nav_menu('sp-footer-menu') ) : ?>
@@ -90,7 +90,7 @@
 		<?php endif; ?>
 	<!--ここまでフッターメニュー-->
 	<?php endif; ?>
-
+	
 	</div><!--scroll-content-->
 
 	<?php if ( is_mobile() ) : ?>
@@ -123,16 +123,19 @@
 	<?php if( get_post_meta( $post->ID, "sp_sidemenu_off", true) == 'この記事でスマホボタンメニューを表示しない' ) : ?>
 	<style>#page-top{bottom:75px;}</style>
 	<?php endif; ?>
-
+	
 </div><!--wrapper-->
 
 <!--ここから-->
 
 <?php if( ! get_option('jin_code_highlighter') == null ) : ?>
-<script src="<?php echo get_template_directory_uri() . '/js/prism.js' ?>"></script>
-<noscript class="deferred-jin"><link href="<?php echo get_template_directory_uri() . '/css/prism.css' ?>" rel="stylesheet" /></noscript>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<noscript class="deferred-jin"><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet" /></noscript>
+<noscript class="deferred-jin"><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" /></noscript>
 <?php endif; ?>
-<noscript class="deferred-jin"><link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet"></noscript>
+<noscript class="deferred-jin"><link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet"></noscript>
 <?php if( is_font_style() == 'nts-style' ): ?>
 <noscript class="deferred-jin"><link href="https://fonts.googleapis.com/earlyaccess/notosansjapanese.css" rel="stylesheet" /></noscript>
 <?php elseif( is_font_style() == 'rm-style' ): ?>
