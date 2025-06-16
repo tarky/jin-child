@@ -2,7 +2,7 @@
 Template: jin
 Theme Name: jin-child
 Author: CrossPiece
-Version: 1.10
+Version: 1.11
 */
 
 .cps-post-main .red {
@@ -80,6 +80,10 @@ font-weight: bold;
 
 .cps-post-main table.cps-table03 th {
 color: #5e6c77;
+}
+
+.cps-post-main table td ul:not([class]){
+  margin-bottom: 0;
 }
 
 .my-profile .my-profile-thumb a{

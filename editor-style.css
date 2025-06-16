@@ -48,6 +48,10 @@ color: #FFF;
 font-weight: inherit;
 }
 
+.mce-content-body table td ul:not([class]){
+margin-bottom: 0;
+}
+
 .mce-content-body table tfoot {
 border-top: solid 3px rgba(0,0,0,0.8);
 background: #FFF;
